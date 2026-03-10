@@ -3,7 +3,7 @@
 A modern, fast, and fully responsive **cybersecurity-focused portfolio website** built using **React, Vite, and Tailwind CSS**.  
 This portfolio showcases my projects, skills, certifications, internships, and achievements, with a clean UI and smooth animations powered by Framer Motion.
 
-Live Demo: *(Add your Vercel link here after deployment)*
+Live Demo: *https://portfolio-smoky-five-55.vercel.app/*
 
 ---
 
