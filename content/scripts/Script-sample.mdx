@@ -1,0 +1,24 @@
+---
+title: "PMon - Personal Device Monitoring Tool"
+date: "2025-12-01"
+summary: "A lightweight host-based monitoring system simulating core SIEM functionality at a single-device level."
+tech_stack: ["Python", "Flask", "SQLite"]
+github_url: "https://github.com/ASLAH-K"
+tags: ["endpoint-security", "python", "monitoring"]
+related_journals: []
+---
+
+## Problem
+Standard SIEM solutions are too heavy and resource-intensive for monitoring a single personal device. I wanted a lightweight way to detect suspicious endpoint activity locally.
+
+## Solution
+I built PMon, a host-based monitoring system that collects authentication, process, and USB activity logs, applying rule-based detection logic to flag anomalies.
+
+### Features
+*   **Log Collection:** Aggregates core system events.
+*   **Detection Engine:** Flags suspicious behavior using predefined rules.
+*   **Flask Dashboard:** Local UI for alert visibility and acknowledgment.
+*   **Tamper-Evident Storage:** SQLite storage with hashed log integrity to prevent modification.
+
+## Lessons Learned
+Building PMon significantly strengthened my understanding of detection logic, the reality of alert noise, and the specific attack surface of local endpoints.
