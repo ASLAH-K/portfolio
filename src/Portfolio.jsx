@@ -2,16 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, Phone, MapPin, ChevronDown, ExternalLink } from 'lucide-react';
 
 export default function Portfolio() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const skills = {
     technical: [
       'Incident Detection & Response',
@@ -84,21 +74,6 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white">
-      {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'}`}>
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            Aslah K
-          </h1>
-          <div className="flex gap-6">
-            <a href="#about" className="hover:text-blue-400 transition">About</a>
-            <a href="#experience" className="hover:text-blue-400 transition">Experience</a>
-            <a href="#skills" className="hover:text-blue-400 transition">Skills</a>
-            <a href="#projects" className="hover:text-blue-400 transition">Projects</a>
-            <a href="#contact" className="hover:text-blue-400 transition">Contact</a>
-          </div>
-        </div>
-      </nav>
 
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center justify-center px-6 pt-20">
@@ -321,12 +296,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-6 border-t border-gray-800">
-        <div className="max-w-6xl mx-auto text-center text-gray-400">
-          <p>© 2025 Muhammed Aslah K. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 }
