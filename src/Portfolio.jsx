@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, Terminal, MapPin, Phone } from 'lucide-react';
-import { getLatestActivity } from './utils/content';
+import { getLatestActivity, getAllProjects } from './utils/content';
 import { currentlyExploring } from './data/exploring';
 
 export default function Portfolio() {
@@ -25,26 +25,8 @@ export default function Portfolio() {
     ]
   };
 
-  const projects = [
-    {
-      title: 'AI-Driven Malicious URL Detection',
-      description: 'A Flask-based web application that detects malicious URLs in real time using lexical features and a Random Forest model. Offers probability-based and custom-weighted risk scoring, achieving over 98% accuracy.',
-      date: 'Dec 2024',
-      tags: ['Python', 'Flask', 'Machine Learning', 'Cybersecurity']
-    },
-    {
-      title: 'Intelligent Clipboard Security Tool',
-      description: 'A real-time Windows clipboard monitoring tool that detects sensitive data, malicious commands, phishing URLs, and leaked passwords. Uses external threat intelligence APIs with dark/light GUI themes.',
-      date: 'May 2025',
-      tags: ['Windows', 'Python', 'Security', 'Threat Intelligence']
-    },
-    {
-      title: 'Personal Device Monitoring Tool (PMon)',
-      description: 'Lightweight Windows security monitoring tool that tracks login attempts, USB insertions, and process creation. Features encrypted SQLite database with tamper-evidence and Flask-based dashboard for real-time visualization.',
-      date: 'Dec 2025',
-      tags: ['Python', 'Flask', 'Security Monitoring', 'SQLite']
-    }
-  ];
+  // Only display projects explicitly marked as featured in their MDX frontmatter
+  const projects = getAllProjects().filter(project => project.featured);
 
   const experience = [
     {
@@ -127,7 +109,7 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, idx) => (
               <div key={idx} className="bg-gray-800/30 p-6 rounded-xl border border-gray-700/50 hover:border-blue-500/50 transition-colors flex flex-col h-full">
-                <h4 className="text-xl font-semibold mb-3 text-white">{project.title}</h4>
+                <Link to={`/projects/${project.slug}`} className="text-xl font-semibold mb-3 text-white hover:text-blue-400 transition-colors">{project.title}</Link>
                 <p className="text-gray-400 text-sm mb-6 leading-relaxed flex-grow">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {project.tags.map((tag, tagIdx) => (

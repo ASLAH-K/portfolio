@@ -23,6 +23,7 @@ export default function Layout({ children }) {
             <Link to="/" className="hover:text-blue-400 transition-colors">Home</Link>
             <Link to="/journal" className="hover:text-blue-400 transition-colors">Learning Journal</Link>
             <Link to="/scripts" className="hover:text-blue-400 transition-colors">Scripts</Link>
+            <Link to="/projects" className="hover:text-blue-400 transition-colors">Projects</Link>
           </div>
         </div>
       </nav>

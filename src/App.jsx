@@ -6,6 +6,8 @@ import Journal from './pages/Journal';
 import JournalEntry from './pages/JournalEntry';
 import Scripts from './pages/Scripts';
 import ScriptEntry from './pages/ScriptEntry';
+import Projects from './pages/Projects';
+import ProjectEntry from './pages/ProjectEntry';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/journal/:slug" element={<JournalEntry />} />
           <Route path="/scripts" element={<Scripts />} />
           <Route path="/scripts/:slug" element={<ScriptEntry />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:slug" element={<ProjectEntry />} />
         </Routes>
       </Layout>
     </Router>

@@ -45,7 +45,8 @@ export function getLatestActivity(limit = 3) {
   // Future content fetchers can simply be dropped into this array
   const sources = [
     getAllJournals(),
-    getAllScripts()
+    getAllScripts(),
+    getAllProjects()
     // getAllTechnologies(),
     // getAllOpenSource()
   ];
@@ -55,4 +56,25 @@ export function getLatestActivity(limit = 3) {
   return allActivity
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, limit);
+}
+
+export function getAllProjects() {
+  const modules = import.meta.glob('../../content/projects/*.mdx', { eager: true });
+
+  const projects = Object.entries(modules).map(([path, module]) => {
+    const slug = path.split('/').pop().replace('.mdx', '');
+    return {
+      slug,
+      type: 'projects',
+      ...module.frontmatter,
+      default: module.default
+    };
+  });
+
+  return projects.sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
+export function getProjectBySlug(slug) {
+  const projects = getAllProjects();
+  return projects.find(project => project.slug === slug);
 }
