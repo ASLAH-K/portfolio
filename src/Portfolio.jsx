@@ -5,43 +5,55 @@ import { getLatestActivity, getAllProjects } from './utils/content';
 import { currentlyExploring } from './data/exploring';
 import SEO from './components/SEO';
 
-// 1. MOVED OUTSIDE RENDER CYCLE: Prevents memory reallocation on component re-renders
 const skills = {
   "Cybersecurity": [
-    "Incident Detection & Response", "Vulnerability Assessment", 
-    "Digital Forensics", "Network Security", "Malware Analysis", "OSINT"
+    "Detection Engineering",
+    "Threat Hunting",
+    "Digital Forensics",
+    "OSINT",
+    "Windows Security",
+    "Vulnerability Assessment"
   ],
-  "Programming": [
-    "Python", "Java", "C++", "Web Development"
+
+  "Programming Languages": [
+    "Python",
+    "PowerShell",
+    "Java",
+    "C++"
   ],
+
   "Tools & Technologies": [
-    "Kali Linux", "Flask", "SQLite", "AI & ML"
-  ],
-  "Core Competencies": [
-    "Problem Solving", "Critical Thinking", "Research & Analysis", "Adaptability"
+    "Windows",
+    "Kali Linux",
+    "Flask",
+    "SQLite",
+    "Git"
   ]
 };
 
 const experience = [
   {
-    role: 'Intern',
-    company: 'Kerala Police (Cyber Crime Police Station)',
-    location: 'Thiruvananthapuram, Kerala',
-    period: 'May 2025 - Jun 2025',
-    description: 'Assisted in cybercrime investigations, report writing, and information gathering using OSINT tools while gaining practical understanding of Cyber Crime Police Station operations.'
+    role: "Intern",
+    company: "Kerala Police (Cyber Crime Police Station)",
+    location: "Thiruvananthapuram, Kerala",
+    period: "May 2025 - Jun 2025",
+    description:
+      "Worked alongside investigators on cybercrime cases, assisting with OSINT-based information gathering, report preparation, and day-to-day investigative tasks. This internship gave me my first practical exposure to how cybercrime investigations are carried out."
   },
   {
-    role: 'Media Head',
-    company: 'GDG On Campus, NFSU Delhi',
-    location: 'Delhi, India',
-    period: 'Oct 2024 - Aug 2025',
-    description: 'Created engaging content including reels, photos, and videos to promote GDG On Campus events; edited multimedia content and managed social media postings.'
+    role: "Media Head",
+    company: "GDG On Campus, NFSU Delhi",
+    location: "Delhi, India",
+    period: "Oct 2024 - Aug 2025",
+    description:
+      "Helped document and promote community events by creating photos, videos, and social media content. It was a great opportunity to improve communication, teamwork, and creative storytelling while supporting a student tech community."
   }
 ];
 
 const certifications = [
-  { name: 'Cisco Ethical Hacker', org: 'Cisco Networking Academy', date: 'Dec 2025' },
-  { name: 'IBM Python 101 for Data Science', org: 'IBM', date: 'Mar 2025' }
+  { name: "CEH-v13", org: "EC Council", date: "On Going" },
+  { name: "Cisco Ethical Hacker", org: "Cisco Networking Academy", date: "Dec 2025" },
+  { name: "IBM Python 101 for Data Science", org: "IBM", date: "Mar 2025" }
 ];
 
 export default function Portfolio() {
@@ -72,12 +84,12 @@ export default function Portfolio() {
                 Muhammed<br />Aslah K
               </h2>
               <p className="text-xl lg:text-2xl text-workspace-text-muted font-medium mt-4">
-                Cybersecurity Student & Enthusiast
+                Cybersecurity Graduate & Enthusiast
               </p>
             </div>
             
             <p className="text-workspace-text-muted text-lg lg:text-xl leading-relaxed max-w-lg">
-              Passionate cybersecurity student with a strong foundation in incident detection, vulnerability assessment, and ethical hacking. 
+              I'm a recent cybersecurity graduate who enjoys understanding how systems work, why attacks succeed, and how they can be detected or prevented. This workspace is where I document what I build, what I'm learning, and the questions that keep me curious along the way. 
             </p>
             
             {/* Social Links */}
@@ -130,9 +142,7 @@ export default function Portfolio() {
         <div className="workspace-container max-w-4xl mx-auto text-center space-y-8">
           <h3 className="text-3xl font-bold text-white">Engineering Philosophy</h3>
           <p className="text-workspace-text-muted text-lg leading-relaxed">
-            I am a B.Tech–M.Tech Integrated Cybersecurity graduate focused on securing digital environments. 
-            This workspace serves as my living engineering notebook—a place to document my iterative process, 
-            analyze anomalies, build detection scripts, and share my continuous growth in the field.
+            This workspace is where I document my journey into cybersecurity—one project, one experiment, and one question at a time. I built it as a place to think out loud, keep track of what I'm learning, and share the ideas, successes, mistakes, and lessons that shape how I approach engineering. As I continue to grow, this workspace will grow with me, becoming a record of both where I started and where the journey takes me next.
           </p>
         </div>
       </section>
@@ -170,7 +180,7 @@ export default function Portfolio() {
         <div className="workspace-container max-w-4xl mx-auto">
           <div className="mb-8">
             <h3 className="text-3xl font-bold text-white">Latest Activity</h3>
-            <p className="text-workspace-text-muted mt-2">Recent updates across my journal, scripts, and research.</p>
+            <p className="text-workspace-text-muted mt-2">What I've been working on lately</p>
           </div>
           <div className="space-y-4">
             {recentActivity.map(activity => (
@@ -197,7 +207,7 @@ export default function Portfolio() {
         <div className="workspace-container max-w-4xl mx-auto bg-workspace-surface/50 border border-workspace-accent/20 rounded-xl p-8 md:p-12 text-center shadow-glow">
           <h3 className="text-2xl font-bold text-white mb-4">Currently Exploring</h3>
           <p className="text-workspace-text-muted mb-8 max-w-2xl mx-auto">
-            My active areas of research and learning. These topics frequently appear in my latest journal entries.
+            These are the topics I'm currently spending the most time learning, experimenting with, and writing about. As my interests evolve, this list will evolve too.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             {currentlyExploring.topics.map(topic => (
@@ -284,8 +294,7 @@ export default function Portfolio() {
         <div className="workspace-container max-w-4xl mx-auto text-center space-y-8">
           <h3 className="text-3xl font-bold text-white">Let's Connect</h3>
           <p className="text-workspace-text-muted text-lg max-w-2xl mx-auto">
-            I'm currently looking for entry-level cybersecurity opportunities. 
-            Whether you want to discuss a project, share threat intelligence, or review a detection rule, my inbox is open.
+           This workspace is always evolving, and so am I. I'm currently looking for my first full-time cybersecurity role while continuing to build projects and document everything I learn. If something here caught your attention—or you'd like to talk about cybersecurity, one of my projects, or a potential opportunity—I'd love to hear from you.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-4">
             <a href="mailto:mhdaslah.k@gmail.com" className="btn-primary">
