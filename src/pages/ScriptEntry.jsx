@@ -1,35 +1,43 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getScriptBySlug } from '../utils/content';
+import SEO from '../components/SEO';
 
 export default function ScriptEntry() {
   const { slug } = useParams();
   const script = getScriptBySlug(slug);
 
-  if (!script) {
-    return <div className="text-white text-center py-20">Script not found.</div>;
-  }
+  if (!script) return <div className="text-workspace-text-primary text-center py-20">Script not found.</div>;
 
   const MDXContent = script.default;
 
   return (
-    <div className="max-w-3xl mx-auto py-12 px-6">
-      <Link to="/scripts" className="text-blue-400 hover:underline mb-8 inline-block">
+    <div className="workspace-container py-12 md:py-20">
+      <SEO 
+        title={script.title} 
+        description={script.summary}
+        type="article"
+      />
+      
+      <Link to="/scripts" className="workspace-link mb-8 inline-block font-medium">
         &larr; Back to Scripts
       </Link>
-
-      <div className="mb-8 pb-8 border-b border-gray-800">
-        <h1 className="text-3xl font-bold text-white mb-4">{script.title}</h1>
-        <div className="flex gap-4 items-center">
-          {script.github_url && (
-            <a href={script.github_url} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-gray-900 bg-white px-4 py-2 rounded hover:bg-gray-200 transition-colors">
-              View on GitHub
+      
+      <div className="mb-12 pb-8 border-b border-workspace-border">
+        <h1 className="text-4xl md:text-5xl font-bold text-workspace-text-primary mb-4 tracking-tight">{script.title}</h1>
+        <p className="text-xl text-workspace-text-muted mb-6 leading-relaxed">{script.summary}</p>
+        
+        {script.github_url && (
+          <div className="mt-4">
+            <a href={script.github_url} target="_blank" rel="noopener noreferrer" className="btn-secondary text-sm px-4 py-2">
+              View Script Repository
             </a>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
-      <article className="prose prose-invert prose-blue max-w-none">
+      {/* The Universal MDX Typography Primitive */}
+      <article className="workspace-mdx">
         <MDXContent />
       </article>
     </div>

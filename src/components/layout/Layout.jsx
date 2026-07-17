@@ -6,12 +6,12 @@ export default function Layout({ children }) {
   return (
     <div className="min-h-screen flex flex-col relative">
       {/* Global Navigation */}
-      <nav className="w-full bg-workspace-surface border-b border-workspace-border py-4 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <nav className="w-full bg-workspace-surface border-b border-workspace-border py-4">
+        <div className="workspace-container flex flex-col md:flex-row justify-between items-center gap-4">
           
           {/* Identity Branding */}
           <Link to="/" className="flex flex-col group text-center md:text-left focus:outline-none focus:ring-2 focus:ring-workspace-accent rounded">
-            <span className="text-xl font-bold text-workspace-text-primary tracking-wide group-hover:text-workspace-accent transition-colors">
+            <span className="text-xl font-bold text-workspace-text-primary tracking-wide group-hover:text-workspace-accent transition-colors duration-workspace-base">
               Digital Engineering Workspace
             </span>
             <span className="text-xs font-mono text-workspace-text-muted uppercase tracking-wider mt-1">

@@ -2,49 +2,55 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getProjectBySlug } from '../utils/content';
 import RelatedContent from '../components/RelatedContent';
+import SEO from '../components/SEO';
 
 export default function ProjectEntry() {
   const { slug } = useParams();
   const project = getProjectBySlug(slug);
 
-  if (!project) return <div className="text-white text-center py-20">Project not found.</div>;
+  if (!project) return <div className="text-workspace-text-primary text-center py-20">Project not found.</div>;
 
   const MDXContent = project.default;
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <Link to="/projects" className="text-blue-400 hover:underline mb-8 inline-block">
+    <div className="workspace-container py-12 md:py-20">
+      <SEO 
+        title={project.title} 
+        description={project.summary}
+        type="article"
+      />
+      <Link to="/projects" className="workspace-link mb-8 inline-block font-medium">
         &larr; Back to Projects
       </Link>
       
-      <div className="mb-12 pb-8 border-b border-gray-800">
-        <h1 className="text-4xl font-bold text-white mb-4">{project.title}</h1>
-        <p className="text-xl text-gray-400 mb-6">{project.summary}</p>
+      <div className="mb-12 pb-8 border-b border-workspace-border">
+        <h1 className="text-4xl md:text-5xl font-bold text-workspace-text-primary mb-4 tracking-tight">{project.title}</h1>
+        <p className="text-xl text-workspace-text-muted mb-6 leading-relaxed">{project.summary}</p>
         
         <div className="flex flex-wrap gap-4 items-center">
           {project.status && (
-            <span className="px-3 py-1 bg-gray-800 border border-gray-700 text-gray-300 rounded text-xs font-mono uppercase tracking-wider">
+            <span className="workspace-pill uppercase tracking-wider">
               Status: {project.status}
             </span>
           )}
           {project.github_url && (
-            <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-gray-900 bg-white px-4 py-2 rounded hover:bg-gray-200 transition-colors">
+            <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="btn-secondary text-sm px-4 py-2">
               View Repository
             </a>
           )}
           {project.demo_url && (
-            <a href={project.demo_url} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-blue-400 border border-blue-400 px-4 py-2 rounded hover:bg-blue-900/30 transition-colors">
+            <a href={project.demo_url} target="_blank" rel="noopener noreferrer" className="btn-primary text-sm px-4 py-2">
               Live Demo
             </a>
           )}
         </div>
       </div>
 
-      <article className="prose prose-invert prose-blue max-w-none">
+      {/* The Universal MDX Typography Primitive */}
+      <article className="workspace-mdx">
         <MDXContent />
       </article>
 
-      {/* Cross-linking Ecosystem */}
       <RelatedContent 
         journals={project.related_journals} 
         scripts={project.related_scripts} 
