@@ -5,13 +5,21 @@ export function getAllJournals() {
     const slug = path.split('/').pop().replace('.mdx', '');
     return {
       slug,
-      type: 'journal', // Injected for the unified activity feed
+      type: 'journal',
       ...module.frontmatter,
       default: module.default
     };
   });
-  
-  return journals.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  // Sort: Pinned items first, then by date (newest first)
+  return journals.sort((a, b) => {
+    // 1. Handle Pinned Status
+    if (a.pinned && !b.pinned) return -1;
+    if (!a.pinned && b.pinned) return 1;
+    
+    // 2. Handle Date (Newest first)
+    return new Date(b.date) - new Date(a.date);
+  });
 }
 
 export function getJournalBySlug(slug) {
