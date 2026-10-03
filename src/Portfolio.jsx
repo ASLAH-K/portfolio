@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Github, Linkedin, Mail, Terminal, MapPin, Phone, FileText } from 'lucide-react';
+import { Github, Linkedin, Mail, Terminal, MapPin, Phone, FileText, CheckCircle2 } from 'lucide-react';
 import { getLatestActivity, getAllProjects } from './utils/content';
 import { currentlyExploring } from './data/exploring';
 import SEO from './components/SEO';
@@ -62,7 +62,22 @@ export default function Portfolio() {
 
   // Only display projects explicitly marked as featured in their MDX frontmatter
   const projects = getAllProjects().filter(project => project.featured);
+// State for email copy feedback
+const [emailCopied, setEmailCopied] = useState(false);
 
+// Bulletproof copy-to-clipboard fallback
+const handleEmailClick = async (e) => {
+  e.preventDefault(); // Stop the default mailto failure
+  try {
+    await navigator.clipboard.writeText("mhdaslah.k@gmail.com");
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2000); // Reset after 2 seconds
+  } catch (err) {
+    console.error("Failed to copy email: ", err);
+  }
+  // Still attempt to open the mail client for users who have it configured
+  window.location.href = "mailto:mhdaslah.k@gmail.com";
+};
   return (
     <div className="text-workspace-text-primary animate-fade-in">
       <SEO 
@@ -100,8 +115,12 @@ export default function Portfolio() {
               <a href="https://www.linkedin.com/in/muhammed-aslah-k-86783836a/" target="_blank" rel="noopener noreferrer" aria-label="Connect with me on LinkedIn" className="p-3.5 bg-workspace-surface border border-workspace-border hover:border-workspace-accent/50 text-workspace-text-muted hover:text-workspace-accent rounded-xl transition-all duration-workspace-base hover:shadow-glow hover:-translate-y-1">
                 <Linkedin size={24} aria-hidden="true" />
               </a>
-              <a href="mailto:mhdaslah.k@gmail.com" aria-label="Email Me" className="p-3.5 bg-workspace-surface border border-workspace-border hover:border-workspace-accent/50 text-workspace-text-muted hover:text-workspace-accent rounded-xl transition-all duration-workspace-base hover:shadow-glow hover:-translate-y-1">
-                <Mail size={24} aria-hidden="true" />
+              <a href="mailto:mhdaslah.k@gmail.com" onClick={handleEmailClick} aria-label="Email Me" className="p-3.5 bg-workspace-surface border border-workspace-border hover:border-workspace-accent/50 text-workspace-text-muted hover:text-workspace-accent rounded-xl transition-all duration-workspace-base hover:shadow-glow hover:-translate-y-1">
+                {emailCopied ? (
+                  <CheckCircle2 size={24} className="text-workspace-glow" aria-hidden="true" />
+                ) : (
+                  <Mail size={24} aria-hidden="true" />
+                )}
               </a>
             </div>
           </div>
@@ -297,8 +316,12 @@ export default function Portfolio() {
            This workspace is always evolving, and so am I. I'm currently looking for my first full-time cybersecurity role while continuing to build projects and document everything I learn. If something here caught your attention—or you'd like to talk about cybersecurity, one of my projects, or a potential opportunity—I'd love to hear from you.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-4">
-            <a href="mailto:mhdaslah.k@gmail.com" className="btn-primary">
-              <Mail size={18} /> Email Me
+          <a href="mailto:mhdaslah.k@gmail.com" onClick={handleEmailClick} className="btn-primary w-40">
+              {emailCopied ? (
+                <><CheckCircle2 size={18} /> Copied!</>
+              ) : (
+                <><Mail size={18} /> Email Me</>
+              )}
             </a>
             <a href="/resume.pdf" download="Muhammed_Aslah_K_Resume.pdf" className="btn-secondary">
               <FileText size={18} /> Download Resume
