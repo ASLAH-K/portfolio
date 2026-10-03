@@ -4,6 +4,8 @@ import { getJournalBySlug, getScriptBySlug } from '../utils/content';
 
 export default function RelatedContent({ journals = [], scripts = [] }) {
   // Future-proof architecture: easily add new content types here
+  if (!journals?.length && !scripts?.length) return null;
+  
   const contentMap = [
     { slugs: journals, fetcher: getJournalBySlug, label: 'Journal Entry', basePath: 'journal' },
     { slugs: scripts, fetcher: getScriptBySlug, label: 'Utility Script', basePath: 'scripts' }

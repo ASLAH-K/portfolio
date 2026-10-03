@@ -1,8 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { MDXProvider } from '@mdx-js/react';
+import { Copy, CheckCircle2 } from 'lucide-react';
 import { getProjectBySlug } from '../utils/content';
 import RelatedContent from '../components/RelatedContent';
 import SEO from '../components/SEO';
+
+// Custom Pre block with Copy functionality
+const CodeBlock = (props) => {
+  const [copied, setCopied] = useState(false);
+  
+  const handleCopy = async () => {
+    // Extract raw text from the nested code element
+    const text = props.children?.props?.children || "";
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+    }
+  };
+
+  return (
+    <div className="relative group">
+      <pre {...props} />
+      <button 
+        onClick={handleCopy}
+        aria-label="Copy code"
+        className="absolute top-3 right-3 p-1.5 rounded-md bg-workspace-surface border border-workspace-border text-workspace-text-muted opacity-0 group-hover:opacity-100 transition-opacity hover:text-workspace-accent focus:opacity-100"
+      >
+        {copied ? <CheckCircle2 size={16} className="text-workspace-glow" /> : <Copy size={16} />}
+      </button>
+    </div>
+  );
+};
 
 export default function ProjectEntry() {
   const { slug } = useParams();
@@ -46,9 +78,10 @@ export default function ProjectEntry() {
         </div>
       </div>
 
-      {/* The Universal MDX Typography Primitive */}
       <article className="workspace-mdx">
-        <MDXContent />
+        <MDXProvider components={{ pre: CodeBlock }}>
+          <MDXContent />
+        </MDXProvider>
       </article>
 
       <RelatedContent 

@@ -65,7 +65,12 @@ module.exports = {
             code: { color: theme('colors.workspace.glow'), backgroundColor: theme('colors.workspace.surface'), padding: '0.25rem 0.4rem', borderRadius: '0.25rem', fontWeight: '500' },
             'code::before': { content: '""' },
             'code::after': { content: '""' },
-            pre: { backgroundColor: theme('colors.workspace.surface'), border: `1px solid ${theme('colors.workspace.border')}` },
+            pre: { 
+              backgroundColor: theme('colors.workspace.surface'), 
+              border: `1px solid ${theme('colors.workspace.border')}`,
+              transition: 'border-color 0.3s ease',
+              '&:hover': { borderColor: theme('colors.workspace.accent') }
+            },
             blockquote: { borderLeftColor: theme('colors.workspace.accent'), color: theme('colors.workspace.text.muted'), fontStyle: 'italic' },
             hr: { borderColor: theme('colors.workspace.border') },
             table: { width: '100%', textAlign: 'left', borderCollapse: 'collapse' },

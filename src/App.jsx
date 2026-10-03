@@ -28,8 +28,8 @@ export default function App() {
         <Layout>
           {/* Suspense provides a fallback UI while the lazy chunks are downloading */}
           <Suspense fallback={
-            <div className="min-h-[50vh] flex items-center justify-center text-workspace-text-muted font-mono animate-pulse">
-              Loading workspace environment...
+            <div className="min-h-[50vh] flex items-center justify-center text-workspace-text-muted font-mono">
+              <span>[ OK ] Initializing workspace environment<span className="animate-pulse ml-1 text-workspace-accent">_</span></span>
             </div>
           }>
             <Routes>

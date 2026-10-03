@@ -30,6 +30,8 @@ export default function SEO({
       <meta name="twitter:title" content={siteTitle} />
       <meta name="twitter:description" content={siteDescription} />
       <meta name="twitter:image" content={image} />
+      <meta property="og:image" content="https://portfolio-smoky-five-55.vercel.app/og-default.png" />
+      <meta name="twitter:image" content="https://portfolio-smoky-five-55.vercel.app/og-default.png" />
     </Helmet>
   );
 }

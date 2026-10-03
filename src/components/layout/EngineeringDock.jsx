@@ -49,7 +49,7 @@ export default function EngineeringDock() {
   return (
     <>
       {/* Fallback Toast Notification */}
-      <div className={`fixed bottom-24 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-workspace-surface/95 backdrop-blur-md border border-workspace-border text-workspace-text-primary text-sm font-medium rounded-lg shadow-glow transition-all duration-300 pointer-events-none ${showToast ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      <div role="status" aria-live="polite" className={`fixed bottom-24 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-workspace-surface/95 backdrop-blur-md border border-workspace-border text-workspace-text-primary text-sm font-medium rounded-lg shadow-glow transition-all duration-300 pointer-events-none ${showToast ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <CheckCircle2 className="w-4 h-4 text-workspace-accent" />
         Email copied to clipboard
       </div>
